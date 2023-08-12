@@ -3,13 +3,37 @@ const path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+const mongoose = require('mongoose');
+const cors = require('cors');
+// const db = require("./models");
 const app = express();
+
+
+const corsOptions = {
+  origin: "*"
+};
+
+const mongooseconfig = {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+}
+
+mongoose.connect("mongodb://localhost:27017/dailyfotokopi", mongooseconfig)
+  .then(() => console.log("database connected"))
+  .catch(err => {
+    console.log('gagal konek ${err.masssage}');
+    process.exit();
+  })
+
+app.use(cors(corsOptions));
+app.use(express.json());
 
 var index = require('./routes/index');
 var login = require('./routes/login');
 var register = require('./routes/register');
 var order = require('./routes/order');
 var about = require('./routes/about');
+var auth = require('./routes/auth');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -25,6 +49,7 @@ app.use('/login', login);
 app.use('/register', register);
 app.use('/order', order);
 app.use('/faq', about);
+app.use('/api', auth);
 
 app.get('/', (request, response) => {
   return response.send('OK');
