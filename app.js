@@ -8,6 +8,7 @@ const app = express();
 var index = require('./routes/index');
 var login = require('./routes/login');
 var register = require('./routes/register');
+var order = require('./routes/order');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -21,6 +22,7 @@ app.set( 'view engine', 'ejs' );
 app.use('/', index);
 app.use('/login', login);
 app.use('/register', register);
+app.use('/order', order);
 
 app.get('/', (request, response) => {
   return response.send('OK');
