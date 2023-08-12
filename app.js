@@ -9,6 +9,7 @@ var index = require('./routes/index');
 var login = require('./routes/login');
 var register = require('./routes/register');
 var order = require('./routes/order');
+var about = require('./routes/about');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -23,6 +24,7 @@ app.use('/', index);
 app.use('/login', login);
 app.use('/register', register);
 app.use('/order', order);
+app.use('/faq', about);
 
 app.get('/', (request, response) => {
   return response.send('OK');
