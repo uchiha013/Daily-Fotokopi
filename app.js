@@ -7,6 +7,7 @@ const app = express();
 
 var index = require('./routes/index');
 var login = require('./routes/login');
+var register = require('./routes/register');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -19,6 +20,7 @@ app.set( 'view engine', 'ejs' );
 
 app.use('/', index);
 app.use('/login', login);
+app.use('/register', register);
 
 app.get('/', (request, response) => {
   return response.send('OK');

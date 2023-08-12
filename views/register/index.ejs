@@ -53,16 +53,16 @@
             <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
               <ul class="navbar-nav  ">
                 <li class="nav-item">
-                  <a class="nav-link" href="/">Home </a>
+                  <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/about">FAQ</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/register">Register</a>
+                <li class="nav-item active">
+                  <a class="nav-link" href="/register">Register <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item  active">
-                  <a class="nav-link" href="/login">Login <span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                  <a class="nav-link" href="/login">Login</a>
               </ul>
             </div>
           </div>
@@ -78,9 +78,9 @@
                 <div class="col">
                   <div class="detail_box">
                     <h1>
-                      Login <br>
+                      Register <br>
                     </h1>
-                    <form action="/login/auth" method="post">
+                    <form action="/register" method="post">
                         <div class="border-radius">
                         </div>
                             <div class="row">
@@ -95,12 +95,18 @@
                                     <input type="password" name="password" id="">
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p>Re-Password</p>
+                                    <input type="password" name="password-confirm" id="">
+                                </div>
+                            </div>
                     </form>
                     <!-- <p>
                       Shop Now
                     </p> -->
                     <a href="" class="">
-                      Login
+                      Register
                     </a>
                   </div>
                 </div>
