@@ -18,12 +18,12 @@ const mongooseconfig = {
   useNewUrlParser: true,
 }
 
-mongoose.connect("mongodb://localhost:27017/dailyfotokopi", mongooseconfig)
-  .then(() => console.log("database connected"))
-  .catch(err => {
-    console.log('gagal konek ${err.masssage}');
-    process.exit();
-  })
+// mongoose.connect("mongodb://localhost:27017/dailyfotokopi", mongooseconfig)
+//   .then(() => console.log("database connected"))
+//   .catch(err => {
+//     console.log('gagal konek ${err.masssage}');
+//     process.exit();
+//   })
 
 app.use(cors(corsOptions));
 app.use(express.json());
