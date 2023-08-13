@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 const app = express();
 
-// require('dotenv').config()
+require('dotenv').config()
 
 // const connectDB = require('./config/connectMonggo')
 
@@ -16,7 +16,7 @@ var login = require('./routes/login');
 var register = require('./routes/register');
 var order = require('./routes/order');
 var about = require('./routes/about');
-// var verifikasi = require('./routes/verifikasi');
+const verifikasi = require('./routes/verifikasi');
 var pesanan = require('./routes/pesanan');
 
 app.use(logger('dev'));
@@ -33,7 +33,7 @@ app.use('/login', login);
 app.use('/register', register);
 app.use('/order', order);
 app.use('/faq', about);
-// app.use('/api', verifikasi);
+app.use('/api', verifikasi);
 app.use('/pesanan', pesanan);
 
 app.get('/', (request, response) => {
