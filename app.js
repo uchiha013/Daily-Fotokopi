@@ -10,8 +10,8 @@ var login = require('./routes/login');
 var register = require('./routes/register');
 var order = require('./routes/order');
 var about = require('./routes/about');
-var auth = require('./routes/auth');
-var pesanan = require('./routes/pesanan');
+// var auth = require('./routes/auth');
+// var pesanan = require('./routes/pesanan');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
