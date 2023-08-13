@@ -3,7 +3,6 @@ const path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 dotenv.config();
 const app = express();
@@ -11,18 +10,6 @@ const app = express();
 const connectDB = require('./config/connectMonggo')
 
 connectDB()
-
-// const mongooseconfig = {
-//   useUnifiedTopology: true,
-//   useNewUrlParser: true,
-// }
-
-// mongoose.connect(process.env.MONGODB_URL, mongooseconfig)
-//   .then(() => console.log("database connected"))
-//   .catch(err => {
-//     console.log('gagal konek ${err.masssage}');
-//     process.exit();
-//   })
 
 var index = require('./routes/index');
 var login = require('./routes/login');
