@@ -4,22 +4,25 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
-// var flash = require('express-flash');
-// var session = require('express-session');
+const dotenv = require('dotenv');
+dotenv.config();
 const app = express();
 
+const connectDB = require('./config/connectMonggo')
 
-const mongooseconfig = {
-  useUnifiedTopology: true,
-  useNewUrlParser: true,
-}
+connectDB()
 
-mongoose.connect("mongodb+srv://vercel-admin-user:peZg0YeSSylAUEtJ@cluster0.mt53dfi.mongodb.net/dailyfotokopi?retryWrites=true&w=majority", mongooseconfig)
-  .then(() => console.log("database connected"))
-  .catch(err => {
-    console.log('gagal konek ${err.masssage}');
-    process.exit();
-  })
+// const mongooseconfig = {
+//   useUnifiedTopology: true,
+//   useNewUrlParser: true,
+// }
+
+// mongoose.connect(process.env.MONGODB_URL, mongooseconfig)
+//   .then(() => console.log("database connected"))
+//   .catch(err => {
+//     console.log('gagal konek ${err.masssage}');
+//     process.exit();
+//   })
 
 var index = require('./routes/index');
 var login = require('./routes/login');
