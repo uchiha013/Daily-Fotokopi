@@ -38,30 +38,30 @@ const login = (req, res, next) => {
             bcrypt.compare(password, user.password, function(err, result){
                 if(err){
                     console.log(err);
-                    req.flash('error',err)
-                    // res.json({
-                    //     error: err
-                    // })
+                    // req.flash('error',err)
+                    res.json({
+                        error: err
+                    })
                 }
                 if(result){
                     let token = jwt.sign({username: user.username}, 'Aqe25123,2,)', {expiresIn: '1h'})
-                    // res.json({
-                    //     message: 'Login Successful',
-                    //     token
-                    // })
+                    res.json({
+                        message: 'Login Successful',
+                        token
+                    })
                     res.redirect('/')
                 }else{
-                    req.flash('message','Password does not Mathced !')
-                    // res.json({
-                    //     message: 'Password does not Mathced !'
-                    // })
+                    // req.flash('message','Password does not Mathced !')
+                    res.json({
+                        message: 'Password does not Mathced !'
+                    })
                 }
             })
         }else{
-            req.flash('message','no user found!')
-            // res.json({
-            //     meesage: 'no user found!'
-            // })
+            // req.flash('message','no user found!')
+            res.json({
+                meesage: 'no user found!'
+            })
         }
     })
 }
