@@ -5,11 +5,11 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 const app = express();
 
-require('dotenv').config()
+// require('dotenv').config()
 
-const connectDB = require('./config/connectMonggo')
+// const connectDB = require('./config/connectMonggo')
 
-connectDB()
+// connectDB()
 
 var index = require('./routes/index');
 var login = require('./routes/login');
