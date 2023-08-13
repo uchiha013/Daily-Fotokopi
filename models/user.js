@@ -7,8 +7,7 @@ const userSchema = new schema({
             },
             password: {
                 type: String
-            },
-
+            }
         },{
             timestamps: true,
         })

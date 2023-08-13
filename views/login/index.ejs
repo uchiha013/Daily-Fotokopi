@@ -80,7 +80,15 @@
                     <h1>
                       Login <br>
                     </h1>
-                    <form action="/login/auth" method="post">
+                    <form action="/api/login" method="post">
+                      <div>
+                        <%if (pesanFlash != '') { %>
+                        <h5 class="alert alert-danger text-center"><%= (pesanFlash) %></h5>
+                        <% } 
+                        else { %>
+    
+                        <% } %>
+                        </div>
                         <div class="border-radius">
                         </div>
                             <div class="row">
@@ -95,13 +103,15 @@
                                     <input type="password" name="password" placeholder="Password">
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col">
+                                  <input type="submit" class="btn btn-dark" value="Login">
+                                </div>
+                            </div>
                     </form>
                     <!-- <p>
                       Shop Now
                     </p> -->
-                    <a href="/" class="">
-                      Login
-                    </a>
                   </div>
                 </div>
               </div>
