@@ -17,7 +17,7 @@ var register = require('./routes/register');
 var order = require('./routes/order');
 var about = require('./routes/about');
 // var verifikasi = require('./routes/verifikasi');
-var pesanan = require('./routes/pesanan');
+// var pesanan = require('./routes/pesanan');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -34,7 +34,7 @@ app.use('/register', register);
 app.use('/order', order);
 app.use('/faq', about);
 // app.use('/api', verifikasi);
-app.use('/pesanan', pesanan);
+// app.use('/pesanan', pesanan);
 
 app.get('/', (request, response) => {
   return response.send('OK');
