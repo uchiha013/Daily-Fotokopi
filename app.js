@@ -3,13 +3,7 @@ const path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
-// const dotenv = require('dotenv');
-// dotenv.config();
 const app = express();
-
-// const connectDB = require('./config/connectMonggo')
-
-// connectDB()
 
 var index = require('./routes/index');
 var login = require('./routes/login');
@@ -19,7 +13,6 @@ var about = require('./routes/about');
 var auth = require('./routes/auth');
 var pesanan = require('./routes/pesanan');
 
-// app.use(flash());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
