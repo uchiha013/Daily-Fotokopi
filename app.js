@@ -7,9 +7,9 @@ const dotenv = require('dotenv');
 dotenv.config();
 const app = express();
 
-const connectDB = require('./config/connectMonggo')
+// const connectDB = require('./config/connectMonggo')
 
-connectDB()
+// connectDB()
 
 var index = require('./routes/index');
 var login = require('./routes/login');
