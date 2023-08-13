@@ -14,7 +14,7 @@ const mongooseconfig = {
   useNewUrlParser: true,
 }
 
-mongoose.connect("mongodb+srv://admin:9kt1F70Vqn1hqxCP@cluster0.mt53dfi.mongodb.net/dailyfotokopi?retryWrites=true&w=majority", mongooseconfig)
+mongoose.connect("mongodb+srv://vercel-admin-user:peZg0YeSSylAUEtJ@cluster0.mt53dfi.mongodb.net/dailyfotokopi?retryWrites=true&w=majority", mongooseconfig)
   .then(() => console.log("database connected"))
   .catch(err => {
     console.log('gagal konek ${err.masssage}');
