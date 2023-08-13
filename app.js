@@ -10,6 +10,8 @@ var login = require('./routes/login');
 var register = require('./routes/register');
 var order = require('./routes/order');
 var about = require('./routes/about');
+var auth = require('./routes/auth');
+var pesanan = require('./routes/pesanan');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -25,6 +27,8 @@ app.use('/login', login);
 app.use('/register', register);
 app.use('/order', order);
 app.use('/faq', about);
+// app.use('/api', auth);
+// app.use('/pesanan', pesanan);
 
 app.get('/', (request, response) => {
   return response.send('OK');
