@@ -20,9 +20,9 @@ const mongooseconfig = {
 mongoose.connect(process.env.MONGODB_CONNECT_URI, mongooseconfig)
   .then(() => console.log("database connected"))
   .catch(err => {
-    console.log('gagal konek ${err.masssage}');
+    console.log('gagal konek ' + err.message);
     process.exit();
-  })
+})
 
 var index = require('./routes/index');
 var login = require('./routes/login');
