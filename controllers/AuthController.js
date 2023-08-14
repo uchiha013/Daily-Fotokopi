@@ -49,7 +49,7 @@ const login = (req, res, next) => {
                         message: 'Login Successful',
                         token
                     })
-                    res.redirect('/')
+                    res.redirect('/') //Check 
                 }else{
                     // req.flash('message','Password does not Mathced !')
                     res.json({

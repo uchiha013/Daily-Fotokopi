@@ -7,9 +7,21 @@ const app = express();
 
 require('dotenv').config()
 
-const connectDB = require('./config/connectMonggo')
+// const connectDB = require('./config/connectMonggo')
 
-connectDB()
+// connectDB()
+
+const mongooseconfig = {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+}
+
+mongoose.connect(process.env.MONGODB_CONNECT_URI, mongooseconfig)
+  .then(() => console.log("database connected"))
+  .catch(err => {
+    console.log('gagal konek ${err.masssage}');
+    process.exit();
+  })
 
 var index = require('./routes/index');
 var login = require('./routes/login');
