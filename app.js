@@ -1,14 +1,16 @@
 const express = require('express');
+var createError = require('http-errors');
 const path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const app = express();
+var multer = require('multer');
 
 require('dotenv').config()
 
-// const connectDB = require('./config/connectMonggo')
+// const connectDB = require('./config  /connectMonggo')
 
 // connectDB()
 
@@ -31,6 +33,7 @@ var order = require('./routes/order');
 var about = require('./routes/about');
 const verifikasi = require('./routes/verifikasi');
 var pesanan = require('./routes/pesanan');
+var fotokopi = require('./routes/fotokopi');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -44,14 +47,18 @@ app.set( 'view engine', 'ejs' );
 app.use('/', index);
 app.use('/login', login);
 app.use('/register', register);
-app.use('/order', order);
+app.use('/api/order', order);
 app.use('/faq', about);
 app.use('/api', verifikasi);
+app.use('/fotokopi', fotokopi);
 app.use('/pesanan', pesanan);
 
 app.get('/', (request, response) => {
   return response.send('OK');
 });
+
+
+
 
 //Call Javascript and Stylesheets
 app.use(express.static('public'));
