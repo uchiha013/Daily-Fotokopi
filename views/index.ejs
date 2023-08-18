@@ -38,7 +38,6 @@
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
           <a class="navbar-brand" href="/">
-            <img src="images/logo.png" alt="">
             <span>
               Daily FotoKopi
             </span>
@@ -58,11 +57,19 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/faq">FAQ</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/register">Register</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/login">Login</a>
+                <% if(islogin === true){ %>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                  </li>
+                <%}
+                else { %>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/register">Register</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                  </li>
+                <% } %>
               </ul>
             </div>
           </div>
@@ -80,9 +87,6 @@
                 Daily <br>
                 Fotokopi <br>
               </h1>
-              <!-- <p>
-                Shop Now
-              </p> -->
               <a href="" class="">
                 Order Now
               </a>
@@ -103,10 +107,17 @@
                       <p>
                         Jalan Bukit Jarian
                       </p>
-                    </div>
-                    <a href="/order" class="btn-box">
-                      choose
-                    </a>
+                      <% if(islogin === true){ %>
+                        <a href="/order" class="btn-box">
+                          choose
+                        </a>
+                      <%}
+                      else { %>
+                        <a href="/login" class="btn-box">
+                          choose
+                        </a>
+                        <% } %>
+                      </div>
                   </div>
                   <div class="box">
                     <div class="img-box">
@@ -119,14 +130,21 @@
                       <p>
                         Jalan Bukit Jarian
                       </p>
-                      <a href="" class="btn-box">
-                        choose
-                      </a>
+                      <% if(islogin === true){ %>
+                        <a href="/order" class="btn-box">
+                          choose
+                        </a>
+                      <%}
+                      else { %>
+                        <a href="/login" class="btn-box">
+                          choose
+                        </a>
+                      <% } %>
                     </div>
                   </div>
                   <div class="box">
                     <div class="img-box">
-                      <img src="images/image2.jpg" class="img1" alt="">
+                      <img src="images/image2.png" class="img1" alt="">
                     </div>
                     <div class="detail-box">
                       <h5>
@@ -135,9 +153,16 @@
                       <p>
                         Jalan Bukit Jarian
                       </p>
-                      <a href="" class="btn-box">
-                        choose
-                      </a>
+                      <% if(islogin === true){ %>
+                        <a href="/order" class="btn-box">
+                          choose
+                        </a>
+                      <%}
+                      else { %>
+                        <a href="/login" class="btn-box">
+                          choose
+                        </a>
+                      <% } %>
                     </div>
                   </div>
                   <div class="box ">
@@ -151,9 +176,16 @@
                       <p>
                         Jalan Bukit Jarian
                       </p>
-                      <a href="" class="btn-box">
-                        choose
-                      </a>
+                      <% if(islogin === true){ %>
+                        <a href="/order" class="btn-box">
+                          choose
+                        </a>
+                      <%}
+                      else { %>
+                        <a href="/login" class="btn-box">
+                          choose
+                        </a>
+                      <% } %>
                     </div>
                   </div>
                   <div class="box">
@@ -167,9 +199,16 @@
                       <p>
                         Jalan Cikutra No.15,
                       </p>
-                      <a href="" class="btn-box">
-                        choose
-                      </a>
+                      <% if(islogin === true){ %>
+                        <a href="/order" class="btn-box">
+                          choose
+                        </a>
+                      <%}
+                      else { %>
+                        <a href="/login" class="btn-box">
+                          choose
+                        </a>
+                      <% } %>
                     </div>
                   </div>
                 </div>

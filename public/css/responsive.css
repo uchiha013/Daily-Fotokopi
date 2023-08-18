@@ -33,6 +33,9 @@
     -ms-flex-preferred-size: 48%;
     flex-basis: 48%;
   }
+  .service_section .service_container .box .img-box img{
+    width: 50%;
+  }
 
   .about_section .img_container .img-box.b2 {
     margin-top: -5%;

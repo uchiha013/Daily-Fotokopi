@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const app = express();
 var multer = require('multer');
+var session = require('express-session');
 
 require('dotenv').config()
 
@@ -25,6 +26,19 @@ mongoose.connect(process.env.MONGODB_CONNECT_URI, mongooseconfig)
     console.log('gagal konek ' + err.message);
     process.exit();
 })
+
+app.use(session({ 
+  secret: '123456cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { 
+   cookie: {
+     sameSite: true,
+     maxAge: 60000
+ }, 
+ }
+}))
+
 
 var index = require('./routes/index');
 var login = require('./routes/login');

@@ -230,6 +230,19 @@ a:focus {
   width: 100%;
 }
 
+.slider_section .detail-box a{
+  display: inline-block;
+  padding: 10px 40px;
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 35px;
+  margin-top: 35px;
+}
+.slider_section .detail-box a:hover {
+  background-color: #DCD3CB;
+  color: #000;
+}
+
 .slider_section .box .detail-box {
   padding: 25px 25px 15px;
 }
@@ -261,7 +274,8 @@ a:focus {
 }
 
 .slider_section .detail_box a:hover {
-  background-color: #5625a1;
+  background-color: #DCD3CB;
+  color: #000;
 }
 
 .slider_section .img_container {
@@ -393,7 +407,7 @@ a:focus {
 }
 
 .service_section .service_container .box .img-box img {
-  width: 90px;
+  width: 100%;
 }
 
 .service_section .service_container .box .detail-box {

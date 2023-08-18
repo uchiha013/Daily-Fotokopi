@@ -55,9 +55,8 @@ const login = (req, res, session) => {
                         maxAge: 15 * 24 * 60 * 60 * 1000, // 15 days
                         sameSite: "strict", // CSRF
                     });
-                    res.header('authorization', 'Bearer ' + token).json({
-                        token: token
-                    })
+                    req.session.loggedin = true;
+                    res.redirect("/");
                 }else{
                     // req.flash('message','Password does not Mathced !')
                     res.json({
