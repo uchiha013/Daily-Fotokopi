@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema
     
 const pesananSchema = new schema({
+            username: {
+                type: String
+            },
             namafotokopi: {
                 type: String
             },
