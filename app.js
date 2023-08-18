@@ -47,7 +47,7 @@ app.set( 'view engine', 'ejs' );
 app.use('/', index);
 app.use('/login', login);
 app.use('/register', register);
-app.use('/api/order', order);
+app.use('/order', order);
 app.use('/faq', about);
 app.use('/api', verifikasi);
 app.use('/fotokopi', fotokopi);

@@ -134,10 +134,30 @@
                           <button type="submit">Submit</button>
                         </div>
                       </form>
-
                   </div>
                 </div>
-              </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <% for(var i = 0; i < fotokopi.length; i++) { %>
+                        <tr>
+                            <td><%= i + 1 %></td>
+                            <td><%= fotokopi[i].namafotokopi %></td>
+                            <td><%= fotokopi[i].alamat %></td>
+                            <td><%= fotokopi[i].whatsapp %></td>
+                            <td><%= fotokopi[i].fasilitas %></td>
+                            <td>
+                                <a href="/update-user?id=<%= fotokopi[i]._id%>" class="btn border-shadow update">
+                                    <span class="text-gradient"><i class="fas fa-pencil-alt"></i></span>
+                                </a>
+                                <a class="btn border-shadow delete" data-id=<%= fotokopi[i]._id%> >
+                                    <span class="text-gradient"><i class="fas fa-times"></i></span>
+                                </a>
+                            </td>
+                        </tr>
+                        <% } %>
+                </div>
+            </div>
         </div>  
       </div>
     </section>

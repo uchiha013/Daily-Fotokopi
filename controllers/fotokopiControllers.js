@@ -34,7 +34,8 @@ const index = (req, res, next) => {
         if(err){
             console.log(err);
         }
-        res.render('fotokopi',{items: data})
+        res.send(data)
+        // res.render('fotokopi')
     })
 }
 

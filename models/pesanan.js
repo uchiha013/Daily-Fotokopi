@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema
     
-const orderSchema = new schema({
+const pesananSchema = new schema({
+            namafotokopi: {
+                type: String
+            },
             layanan: {
                 type: String
             },
@@ -48,6 +51,6 @@ const orderSchema = new schema({
 
 // module.exports = autoIncrementModelID;
 
-const Order = mongoose.model('Order', orderSchema)
+const Pesanan = mongoose.model('Pesanan', pesananSchema)
 
-module.exports = Order
+module.exports = Pesanan

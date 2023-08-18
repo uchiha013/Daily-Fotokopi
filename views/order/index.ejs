@@ -74,27 +74,25 @@
             <div class="col-md-3">
                 <div class="box">
                     <div class="img-box">
-                      <img src="images/Gambar1Order.png" alt="">
+                      <!-- <img
+                      src="data:fotokopi[1]/<%=fotokopi[1].img.contentType%>;base64,
+                      <%=fotokopi[1].img.data.toString('base64')%>"
+                      /> -->
                     </div>
                     <div class="detail-box">
                       <h5>
-                        Insan Fotocopy
+                        <%= fotokopi[1].namafotokopi %>
                       </h5>
                       <p>
-                        0867373437
+                        <%= fotokopi[1].whatsapp %>
                       </p>
                       <h5>
                         Fasilitas:
                       </h5>
                       <ul>
-                        <li>Photocopy</li>
-                        <li>Pas Foto</li>
-                        <li>Jilid</li>
-                        <li>Scan</li>
-                        <li>Print warna</li>
-                        <li>Print Hitam Putih</li>
-                        <li>Print s.d A3</li>
-                        <li>Print Stiker</li>
+                        <% for(var i = 0; i < fotokopi[1].fasilitas.length; i++) { %>
+                        <li><%= fotokopi[1].fasilitas[i] %></li>
+                        <% } %>
                       </ul>
                     </div>
                   </div>
@@ -107,9 +105,9 @@
                                 <div class="text-center">
                                 <h5>pilih tipe pelayanan</h5>
                                 <select id="combo" name="fruit" class="my-combo" data-btn-class="btn-success">
-                                  <option value="A">Apple</option>
-                                  <option value="B">Blueberry</option>
-                                  <option value="O">Orange</option>
+                                  <% for(var i = 0; i < fotokopi[1].fasilitas.length; i++) { %>
+                                    <option><%= fotokopi[1].fasilitas[i] %></option>
+                                    <% } %>
                                 </select>
                                     <h5>Input File</h5>
                                     <p>Development</p>

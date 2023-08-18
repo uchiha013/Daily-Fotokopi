@@ -4,6 +4,7 @@ const multer = require("multer");
 
 const authenticate = require('../middleware/authenticate')
 const FotokopiController = require('../controllers/fotokopiControllers');
+const services = require('../services/render');
 
 
 var storage = multer.diskStorage({
@@ -23,7 +24,8 @@ var upload = multer({ storage: storage });
 // router.get('/', function(req, res, next) {
 //   res.render('order', { title: 'Express' });
 // });
-router.get('/', FotokopiController.index)
+router.get('/', services.fotokopiRoutes)
+router.get('/api/fotokopi', FotokopiController.index)
 router.post('/show', FotokopiController.show)
 router.post('/store',upload.single('image'), FotokopiController.daftarFotokopi)
 

@@ -1,8 +1,9 @@
-const Order = require("../models/order")
+const Pesanan = require("../models/pesanan")
+const axios = require('axios')
 
-//Menampilkan List Order
+//Menampilkan List Pesanan
 const index = (req, res, next) => {
-     Order.find()
+     Pesanan.find()
      .then(response =>{
         res.json({
             response
@@ -18,7 +19,7 @@ const index = (req, res, next) => {
 const show = (req, res, next) => {
     let OrderId = req.body.OrderId
 
-    Order.findById(OrderId)
+    Pesanan.findById(OrderId)
     .then(response =>{
         res.json({
             response
@@ -32,17 +33,17 @@ const show = (req, res, next) => {
 }
 const store = (req, res, next) =>{
 
- let order = new Order({
+ let pesanan = new Pesanan({
      layanan: req.body.layanan,
      jenisfile: req.body.jenisfile,
      buktifotopembayaran: req.body.buktifotopembayaran,
      noAntrian: req.body.noAntrian,
      status: req.body.status
  })
- order.save()
+ pesanan.save()
  .then(response => {
      res.json({
-         massage: 'Order Added Successfully'
+         massage: 'Pesanan Added Successfully'
      })
  })
  .catch(error =>{
@@ -62,10 +63,10 @@ const update = (req, res, next) =>{
         noAntrian: req.body.noAntrian,
         status: req.body.status
     }
-    Order.findByIdAndUpdate(orderId, {$set: updateOrder})
+    Pesanan.findByIdAndUpdate(orderId, {$set: updateOrder})
     .then(response => {
         res.json({
-            massage: 'Order updated Successfully'
+            massage: 'Pesanan updated Successfully'
         })
     })
     .catch(error =>{
@@ -78,10 +79,10 @@ const update = (req, res, next) =>{
 const destroy = (req, res, next) =>{
     let orderId = req.body.OrderId
 
-    Order.findIdandRemove(orderId, {$set: updateOrder})
+    Pesanan.findIdandRemove(orderId, {$set: updateOrder})
     .then(response => {
         res.json({
-            massage: 'Order deleted Successfully'
+            massage: 'Pesanan deleted Successfully'
         })
     })
     .catch(error =>{
