@@ -70,6 +70,7 @@ app.use('/pesanan', pesanan);
 app.get('/', (request, response) => {
   return response.send('OK');
 });
+app.get('/favicon.ico', (req, res) => res.status(204));
 
 
 
