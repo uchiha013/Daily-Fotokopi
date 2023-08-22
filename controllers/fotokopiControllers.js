@@ -40,19 +40,23 @@ const index = (req, res, next) => {
 }
 
 const show = (req, res, next) => {
-    let OrderId = req.body.OrderId
+    let id = req.query.id
 
-    Order.findById(OrderId)
-    .then(response =>{
-        res.json({
-            response
-        })
+    Fotokopi.findById(id)
+    .then(data =>{
+        if(!data){
+            res.status(404).send({ message : "Not found fotokopi with id "+ id})
+        }else{
+            res.send(data)
+            // res.json({
+            //     res
+            // })
+        }
     })
-    .catch(error =>{
-        res.json({
-            message: 'An error occured!'
-        })
+    .catch(err =>{
+        res.status(500).send({ message: "Error retrieving fotokopi with id " + id +"error : " + err})
     })
+
 }
 
 module.exports ={

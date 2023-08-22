@@ -5,9 +5,8 @@ const authenticate = require('../middleware/authenticate')
 const services = require('../services/render');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express', islogin: req.session.loggedin });
-});
+router.get('/', services.IndexRoutes);
+
 
 router.get('/logout', authenticate , function(req, res, next) {
   req.session.destroy((err) => {

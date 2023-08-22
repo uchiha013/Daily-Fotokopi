@@ -3,27 +3,24 @@ const axios = require('axios')
 
 //Menampilkan List Pesanan
 const index = (req, res, next) => {
-     Pesanan.find()
-     .then(response =>{
-        res.json({
-            response
-        })
-     })
-     .catch(error =>{
-        res.json({
-            message: 'An error occured!'
-        })
-     })
+    Pesanan.find()
+    .then((data, err)=>{
+        if(err){
+            console.log(err);
+        }
+        res.send(data)
+    })
+    .catch(err =>{
+        res.status(500).send({ message: err})
+    })
 }
 
 const show = (req, res, next) => {
-    let OrderId = req.body.OrderId
+    const OrderId = req.query.id;
 
     Pesanan.findById(OrderId)
     .then(response =>{
-        res.json({
-            response
-        })
+        res.send(response)
     })
     .catch(error =>{
         res.json({
@@ -34,6 +31,8 @@ const show = (req, res, next) => {
 const store = (req, res, next) =>{
 
  let pesanan = new Pesanan({
+     namafotokopi: req.body.namafotokopi,
+     namapemesan: req.body.namapemesan,
      layanan: req.body.layanan,
      jenisfile: req.body.jenisfile,
      buktifotopembayaran: req.body.buktifotopembayaran,
@@ -57,6 +56,8 @@ const update = (req, res, next) =>{
     let orderId = req.body.OrderId
 
     let updateOrder = {
+        namapemesan: req.body.namapemesan,
+        namafotokopi: req.body.namafotokopi,
         layanan: req.body.layanan,
         jenisfile: req.body.jenisfile,
         buktifotopembayaran: req.body.buktifotopembayaran,
@@ -92,44 +93,8 @@ const destroy = (req, res, next) =>{
     })
 }
 
-const daftarFotokopi = (req, res, next) => {
-    let daftarFotokopi = new Fotokopi ({
-        layanan: req.body.layanan,
-        whatsapp: req.body.jenisfile,
-        fasilitas: req.body.buktifotopembayaran,
-        status: "not finished yet",
-    })
-    daftarFotokopi.save()
-    .then(daftarFotokopi => {
-        res.json({
-            massage: 'fotokopi Added Successfully'
-        })
-    })
-    .catch(error =>{
-        res.json({
-            message: 'An error occured!'
-        })
-    })
-}
 
 module.exports ={
     index,show,store,update,destroy
 }
 
-// const autoIncrementModelID = require('./counterModel');
-
-// const myModel = new Schema({
-//   id: { type: Number, unique: true, min: 1 },
-//   createdAt: { type: Date, default: Date.now },
-//   updatedAt: { type: Date },
-//   someOtherField: { type: String }
-// });
-
-// myModel.pre('save', function (next) {
-//   if (!this.isNew) {
-//     next();
-//     return;
-//   }
-
-//   autoIncrementModelID('activities', this, next);
-// });

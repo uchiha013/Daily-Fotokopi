@@ -82,65 +82,80 @@
     <section class=" slider_section ">
       <div class="container">
         <div class="row">
-            <div class="col-md-3">
-                <div class="box">
-                    <div class="img-box">
-                      <!-- <img
-                      src="data:fotokopi[1]/<%=fotokopi[1].img.contentType%>;base64,
-                      <%=fotokopi[1].img.data.toString('base64')%>"
-                      /> -->
-                    </div>
-                    <div class="detail-box">
-                      <h5>
-                        <%= fotokopi[1].namafotokopi %>
-                      </h5>
-                      <p>
-                        <%= fotokopi[1].whatsapp %>
-                      </p>
-                      <h5>
-                        Fasilitas:
-                      </h5>
-                      <ul>
-                        <% for(var i = 0; i < fotokopi[1].fasilitas.length; i++) { %>
-                        <li><%= fotokopi[1].fasilitas[i] %></li>
-                        <% } %>
-                      </ul>
-                    </div>
-                  </div>
-            </div>
-            <div class="col">
-                <div class="box">
-                    <div class="detail-box">                     
-                        <form name="test" action="#">
-                            <div class="form-group" id="combo-group">
-                                <div class="text-center">
-                                <h5>pilih tipe pelayanan</h5>
-                                <select id="combo" name="fruit" class="my-combo" data-btn-class="btn-success">
-                                  <% for(var i = 0; i < fotokopi[1].fasilitas.length; i++) { %>
-                                    <option><%= fotokopi[1].fasilitas[i] %></option>
-                                    <% } %>
-                                </select>
-                                    <h5>Input File</h5>
-                                    <p>Development</p>
-                                    <div class="row">
-                                        <div class="col">
-                                            <h5>Kirim Bukti Payment method</h5>
-                                            <p>Developement</p>
-                                        </div>
-                                        <div class="col">
-                                            <h5>No Antrian</h5>
-                                            <H1>9</H1>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                
+          <div class="col">
+            <div class="box">
+              <div class="detail-box">                     
+                    <h1>ORDER</h1>
+                    <form action="/order/store" method="POST">
+                      <div class="form-group" id="combo-group">
+                        <div class="text-left">
+                            <input type="hidden" id="namafotokopi" name="namafotokopi" value="<%=fotokopi.namafotokopi %>">
+                            <input type="hidden" id="noAntrian" name="noAntrian" value="<%= parseInt(pesanan[1].noAntrian) + 1 %>">
+                            <h5>Nama Pemesan</h5>
+                            <input
+                              class="input"
+                              type="text"
+                              id="namapemesan"
+                              placeholder="Nama Pemesan"
+                              value=""
+                              name="namapemesan"
+                              required
+                            />
+                          <h5>pilih tipe pelayanan</h5>
+                          <select  id="layanan" name="layanan" class="my-combo" data-btn-class="btn-success">
+                            <% for(var i = 0; i < fotokopi.fasilitas.length; i++) { %>
+                              <option><%= fotokopi.fasilitas[i] %></option>
+                            <% } %>
+                          </select>
+                          <div style="padding-bottom: 10px;"></div>
+                            <h5>Input File</h5>
+                            <!-- <input style="padding-bottom: 10px;" type="file" id="image" name="image" value="" required /> -->
+                            <p id="jenisfile" name="jenisfile">Developement</p>
+                          <div class="row">
+                              <div class="col">
+                                  <h5>Kirim Bukti Payment method</h5>
+                                  <p id="buktifotopembayaran" name="buktifotopembayaran">Developement</p>
                               </div>
-                              
-                          </form>
-                    </div>
+                              <input type="hidden" id="status" name="status" value="Belum dilakukan">
+                              <!-- <div class="col">
+                                  <h5>No Antrian</h5>
+                                  <H1>9</H1>
+                              </div> -->
+                          </div>
+                          <button type="submit">Order Now</button>
+                        </div>                        
+                      </div>                           
+                    </form>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-3">
+              <div class="box">
+                  <!-- <div class="img-box">
+                    <img
+                    src="data:fotokopi/<%=fotokopi.img.contentType%>;base64,
+                    <%=fotokopi.img.data.toString('base64')%>"
+                    />
+                  </div> -->
+                  <div class="detail-box">
+                    <h5>
+                      <!-- <%= fotokopi._id %> -->
+                      <%= fotokopi.namafotokopi %>
+                    </h5>
+                    <p>
+                      <%= fotokopi.whatsapp %>
+                    </p>
+                    <h5>
+                      Fasilitas:
+                    </h5>
+                    <ul>
+                      <% for(var i = 0; i < fotokopi.fasilitas.length; i++) { %>
+                      <li><%= fotokopi.fasilitas[i] %></li>
+                      <% } %>
+                    </ul>
+                  </div>
                 </div>
-            </div>
+          </div>
         </div>
       </div>
     </section>

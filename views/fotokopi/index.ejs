@@ -139,6 +139,17 @@
             </div>
             <div class="row">
                 <div class="col">
+                  <table class="table">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th>ID</th>
+                        <th>Nama Fotokopi</th>
+                        <th>Alamat</th>
+                        <th>Whatsapp</th>
+                        <th>fasilitas</th>
+                      </tr>
+                    </thead>
+                    <tbody>
                     <% for(var i = 0; i < fotokopi.length; i++) { %>
                         <tr>
                             <td><%= i + 1 %></td>
@@ -155,7 +166,9 @@
                                 </a>
                             </td>
                         </tr>
-                        <% } %>
+                      <% } %>
+                    </tbody>
+                  </table>
                 </div>
             </div>
         </div>  

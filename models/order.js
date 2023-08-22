@@ -5,7 +5,7 @@ const pesananSchema = new schema({
             namafotokopi: {
                 type: String
             },
-            username:{
+            namapemesan:{
                 type: string
             },
             layanan: {

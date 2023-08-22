@@ -26,7 +26,7 @@ var upload = multer({ storage: storage });
 // });
 router.get('/', services.fotokopiRoutes)
 router.get('/api/fotokopi', FotokopiController.index)
-router.post('/show', FotokopiController.show)
+router.get('/show', FotokopiController.show)
 router.post('/store',upload.single('image'), FotokopiController.daftarFotokopi)
 
 
