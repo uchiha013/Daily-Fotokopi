@@ -111,12 +111,13 @@
                           <div style="padding-bottom: 10px;"></div>
                             <h5>Input File</h5>
                             <div class="custom-file-input-upload">
-                              <input id="fileInput" type="file" name="Files" required multiple />
+                              <input id="fileInput" type="file" name="Files" required />
                               <label class="label-upload" for="fileInput" id="fileInputLabel">Select Files</label>
                             </div>
                             <h5>Kirim Bukti Payment method</h5>
-                            <input id="fileInputbukti" type="file" name="filesbuktipembayaran" required />
-                            <label class="label-upload" for="fileInputbukti" id="fileInputLabelbukti">Select Files</label>
+                            <p>development</p>
+                            <!-- <input id="fileInputbukti" type="file" name="filesbuktipembayaran" required />
+                            <label class="label-upload" for="fileInputbukti" id="fileInputLabelbukti">Select Files</label> -->
 
                             <input type="hidden" id="status" name="status" value="Belum dilakukan">
                           <button id="myButton" type="submit">Order</button>
@@ -167,7 +168,9 @@
     };
     
     var fileInput = document.getElementById('fileInput');
+    var fileInputbukti = document.getElementById('fileInput');
     var fileInputLabel = document.getElementById('fileInputLabel');
+    var fileInputLabelbukti = document.getElementById('fileInputLabel');
 
     fileInput.addEventListener('change', function () {
         if (fileInput.files && fileInput.files.length > 0) {
@@ -182,6 +185,20 @@
             fileInputLabel.textContent = 'Select Files';
         }
     });
+
+    // fileInputbukti.addEventListener('change', function () {
+    //     if (fileInputbukti.filesbuktipemabayaran && fileInputbukti.filespembayaran.length > 0) {
+    //         var fileNamebukti = '';
+    //         if (fileInputbukti.filesbuktipemabayaran.length === 1) {
+    //             fileNamebukti = fileInputbukti.filesbuktipemabayaran[0].name;
+    //         } else {
+    //             fileNamebukti = fileInputbukti.filesbuktipemabayaran.length + ' files selected';
+    //         }
+    //         fileInputLabelbukti.textContent = fileNamebukti;
+    //     } else {
+    //         fileInputLabelbukti.textContent = 'Select Files';
+    //     }
+    // });
 
     const formElem = document.querySelector('form');
     formElem.addEventListener('submit', async (e) => {

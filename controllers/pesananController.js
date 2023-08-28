@@ -30,16 +30,16 @@ const uploadFile = async (fileObject) => {
     console.log(`Uploaded file ${data.name} ${data.id}`);
 };
 
-const uploadFileBuktiPembayaran = async (fileObject) => {
+const uploadFileBuktiPembayaran = async (fileObject2) => {
     const bufferStream = new stream.PassThrough();
-    bufferStream.end(fileObject.buffer);
+    bufferStream.end(fileObject2.buffer);
     const { data } = await google.drive({ version: "v3", auth }).files.create({
         media: {
-            mimeType: fileObject.mimeType,
+            mimeType: fileObject2.mimeType,
             body: bufferStream,
         },
         requestBody: {
-            name: fileObject.originalname,
+            name: fileObject2.originalname,
             parents: ["1pxmbQmx-GS8gzfSE5oi4szKCe5R32SOW"],
         },
         fields: "id,name",
@@ -91,7 +91,7 @@ const store = async (req, res) =>{
 
     console.log(req.body);
     console.log(req.files);
-    console.log(req.body.files.name);
+    // console.log(req.body.files.name);
     const { body, files, filesbuktipembayaran } = req;
 
     for (let f = 0; f < req.files.length; f += 1) {
@@ -99,7 +99,7 @@ const store = async (req, res) =>{
         console.log("the file it's work")
     }
 
-    uploadFileBuktiPembayaran(filesbuktipembayaran);
+    // uploadFileBuktiPembayaran(filesbuktipembayaran);
     pesanan.save()
     .then(response => {   
             res.status(200).send("pesanan berhasil ditambahkan");
