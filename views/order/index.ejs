@@ -86,11 +86,12 @@
             <div class="box">
               <div class="detail-box">                     
                     <h1>ORDER</h1>
+                    <p style="display: none;"></p>
                     <form action="/order/store" method="POST">
                       <div class="form-group" id="combo-group">
                         <div class="text-left">
                             <input type="hidden" id="namafotokopi" name="namafotokopi" value="<%=fotokopi.namafotokopi %>">
-                            <input type="hidden" id="noAntrian" name="noAntrian" value="<%= parseInt(pesanan[1].noAntrian) + 1 %>">
+                            <input type="hidden" id="noAntrian" name="noAntrian" value="<%= parseInt(pesanan.length) + 1 %>">
                             <h5>Nama Pemesan</h5>
                             <input
                               class="input"
@@ -109,20 +110,16 @@
                           </select>
                           <div style="padding-bottom: 10px;"></div>
                             <h5>Input File</h5>
-                            <!-- <input style="padding-bottom: 10px;" type="file" id="image" name="image" value="" required /> -->
-                            <p id="jenisfile" name="jenisfile">Developement</p>
-                          <div class="row">
-                              <div class="col">
-                                  <h5>Kirim Bukti Payment method</h5>
-                                  <p id="buktifotopembayaran" name="buktifotopembayaran">Developement</p>
-                              </div>
-                              <input type="hidden" id="status" name="status" value="Belum dilakukan">
-                              <!-- <div class="col">
-                                  <h5>No Antrian</h5>
-                                  <H1>9</H1>
-                              </div> -->
-                          </div>
-                          <button type="submit">Order Now</button>
+                            <div class="custom-file-input-upload">
+                              <input id="fileInput" type="file" name="Files" required multiple />
+                              <label class="label-upload" for="fileInput" id="fileInputLabel">Select Files</label>
+                            </div>
+                            <h5>Kirim Bukti Payment method</h5>
+                            <input id="fileInputbukti" type="file" name="filesbuktipembayaran" required />
+                            <label class="label-upload" for="fileInputbukti" id="fileInputLabelbukti">Select Files</label>
+
+                            <input type="hidden" id="status" name="status" value="Belum dilakukan">
+                          <button id="myButton" type="submit">Order</button>
                         </div>                        
                       </div>                           
                     </form>
@@ -162,6 +159,50 @@
     <!-- end slider section -->
   </div>
 
+  <script>
+
+
+    document.getElementById("myButton").onclick = function () {
+        this.style.backgroundColor = "red";
+    };
+    
+    var fileInput = document.getElementById('fileInput');
+    var fileInputLabel = document.getElementById('fileInputLabel');
+
+    fileInput.addEventListener('change', function () {
+        if (fileInput.files && fileInput.files.length > 0) {
+            var fileName = '';
+            if (fileInput.files.length === 1) {
+                fileName = fileInput.files[0].name;
+            } else {
+                fileName = fileInput.files.length + ' files selected';
+            }
+            fileInputLabel.textContent = fileName;
+        } else {
+            fileInputLabel.textContent = 'Select Files';
+        }
+    });
+
+    const formElem = document.querySelector('form');
+    formElem.addEventListener('submit', async (e) => {
+        console.log("form submitting")
+        e.preventDefault();
+        await fetch('/order/store', {
+            method: 'POST',
+            body: new FormData(formElem),
+        }).then(response => {
+            document.querySelector('p').textContent = "Order Berhasil dibuat No Antrian ke <%= parseInt(pesanan.length) + 1 %>";
+            document.getElementById("myButton").style.backgroundColor = "green"
+            document.getElementById('fileInputLabel').textContent = "Select Files";
+            document.querySelector('p').style.display = 'block';
+            console.log(response);
+        }).catch(error => {
+            document.querySelector('p').textContent = "Was not uploaded" + error;
+            document.querySelector('p').style.display = 'block';
+            console.error(error);
+        });
+    });
+  </script>
 
   <script src="javascripts/jquery-3.4.1.min.js"></script>
   <script src="javascripts/bootstrap.js"></script>

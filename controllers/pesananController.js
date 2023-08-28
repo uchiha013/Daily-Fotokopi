@@ -1,5 +1,52 @@
 const Pesanan = require("../models/pesanan")
 const axios = require('axios')
+const { google } = require("googleapis");
+const stream = require("stream");
+const path = require("path");
+
+const KEYFILEPATH = path.join(__dirname, "pk.json");;
+
+const SCOPES = ["https://www.googleapis.com/auth/drive"];
+
+const auth = new google.auth.GoogleAuth({
+    keyFile: KEYFILEPATH,
+    scopes: SCOPES,
+});
+
+const uploadFile = async (fileObject) => {
+    const bufferStream = new stream.PassThrough();
+    bufferStream.end(fileObject.buffer);
+    const { data } = await google.drive({ version: "v3", auth }).files.create({
+        media: {
+            mimeType: fileObject.mimeType,
+            body: bufferStream,
+        },
+        requestBody: {
+            name: fileObject.originalname,
+            parents: ["1I3NePtd-pkyCMfWwDgP-giJaGPwiUx0D"],
+        },
+        fields: "id,name",
+    });
+    console.log(`Uploaded file ${data.name} ${data.id}`);
+};
+
+const uploadFileBuktiPembayaran = async (fileObject) => {
+    const bufferStream = new stream.PassThrough();
+    bufferStream.end(fileObject.buffer);
+    const { data } = await google.drive({ version: "v3", auth }).files.create({
+        media: {
+            mimeType: fileObject.mimeType,
+            body: bufferStream,
+        },
+        requestBody: {
+            name: fileObject.originalname,
+            parents: ["1pxmbQmx-GS8gzfSE5oi4szKCe5R32SOW"],
+        },
+        fields: "id,name",
+    });
+    console.log(`Uploaded file ${data.name} ${data.id}`);
+};
+
 
 //Menampilkan List Pesanan
 const index = (req, res, next) => {
@@ -28,28 +75,45 @@ const show = (req, res, next) => {
         })
     })
 }
-const store = (req, res, next) =>{
 
- let pesanan = new Pesanan({
-     namafotokopi: req.body.namafotokopi,
-     namapemesan: req.body.namapemesan,
-     layanan: req.body.layanan,
-     jenisfile: req.body.jenisfile,
-     buktifotopembayaran: req.body.buktifotopembayaran,
-     noAntrian: req.body.noAntrian,
-     status: req.body.status
- })
- pesanan.save()
- .then(response => {
-     res.json({
-         massage: 'Pesanan Added Successfully'
-     })
- })
- .catch(error =>{
-     res.json({
-         message: 'An error occured!'
-     })
- })
+
+
+const store = async (req, res) =>{
+
+    let pesanan = new Pesanan({
+        namafotokopi: req.body.namafotokopi,
+        namapemesan: req.body.namapemesan,
+        layanan: req.body.layanan,
+        noAntrian: req.body.noAntrian,
+        status: req.body.status
+    })
+    try {
+
+    console.log(req.body);
+    console.log(req.files);
+    console.log(req.body.files.name);
+    const { body, files, filesbuktipembayaran } = req;
+
+    for (let f = 0; f < req.files.length; f += 1) {
+        await uploadFile(files[f]);
+        console.log("the file it's work")
+    }
+
+    uploadFileBuktiPembayaran(filesbuktipembayaran);
+    pesanan.save()
+    .then(response => {   
+            res.status(200).send("pesanan berhasil ditambahkan");
+            console.log("the database pesanan it's work")
+    })
+    .catch(error =>{
+        res.json({
+            message: error
+        })
+    })
+    } catch (f) {
+        res.send(f.message);
+        console.log(f)
+    } 
 }
 
 const update = (req, res, next) =>{
@@ -92,6 +156,8 @@ const destroy = (req, res, next) =>{
         })
     })
 }
+
+
 
 
 module.exports ={

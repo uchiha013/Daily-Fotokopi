@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const app = express();
 var multer = require('multer');
 var session = require('express-session');
+const favicon = require("serve-favicon")
 
 require('dotenv').config()
 
@@ -70,9 +71,8 @@ app.use('/pesanan', pesanan);
 app.get('/', (request, response) => {
   return response.send('OK');
 });
-app.get('/favicon.ico', (req, res) => res.status(204));
 
-
+app.use(favicon('./public/images/favicon.ico'));
 
 
 //Call Javascript and Stylesheets

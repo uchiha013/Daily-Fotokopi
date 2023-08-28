@@ -11,9 +11,6 @@ const pesananSchema = new schema({
             layanan: {
                 type: String
             },
-            jenisfile: {
-                type: String
-            },
             buktifotopembayaran: {
                 type: String
             },

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const multer = require("multer");
 
+
 const authenticate = require('../middleware/authenticate')
 const FotokopiController = require('../controllers/fotokopiControllers');
 const services = require('../services/render');
