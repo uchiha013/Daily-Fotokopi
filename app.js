@@ -91,7 +91,7 @@ res.status(err.status || 500);
 res.render('error');
 });
 // port must be set to 3000 because incoming http requests are routed from port 80 to port 8080
-var server = app.listen(3000, function () {
-   console.log('Node app is running on port 3000');
+var server = app.listen(8080, function () {
+   console.log('Node app is running on port 8080');
 });
 module.exports = app;

@@ -17,14 +17,14 @@ const register = (req, res, next) => {
         })
         user.save()
         .then(user => {
-            res.json({
-                massage: 'User Added Successfully'
-            })
+            // res.status(200).send("Register berhasil ditambahkan");
+            res.send({message:'Register Berhasil silahkan untuk login'});
+            console.log("Berhasil")
         })
         .catch(error =>{
-            res.json({
-                message: 'An error occured!'
-            })
+            // res.status(200).send("Register Gagal");
+            res.send({message:'Register Gagal'});
+            console.log("Gagal")
         })
     })
 }

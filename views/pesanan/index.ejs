@@ -90,6 +90,7 @@
                   <th>No</th>
                   <th>Nama Pemesan</th>
                   <th>Jenis layanan</th>
+                  <th>Nama File</th>
                   <th>no Antrian</th>
                   <th>status</th>
                   <th>Keterangan</th>
@@ -101,11 +102,12 @@
                       <td><%= i + 1 %></td>
                       <td><%= pesanan[i].namapemesan %></td>
                       <td><%= pesanan[i].layanan %></td>
+                      <td><%= pesanan[i].namafile %></td>
                       <td><%= pesanan[i].noAntrian %></td>
                       <td><%= pesanan[i].status %></td>
                       <td>
-                        <a class="btn btn-success edit" href="/trayek/edit/<%=pesanan[i]._id%>">Done</a>                       
-                        <a class="btn btn-danger delete" onclick="return alert('Are You sure?')" href="../trayek/delete/<%=pesanan[i]._id%>">Delete</a>  
+                        <a class="btn btn-success edit" href="/pesanan/edit/<%=pesanan[i]._id%>">Done</a>                       
+                        <a class="btn btn-danger delete" onclick="return alert('Are You sure?')" href="/pesanan/delete/<%=pesanan[i]._id%>">Delete</a>  
                       </td>
                   </tr>
                 <% } %>

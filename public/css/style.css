@@ -81,16 +81,31 @@ input[type="file"] {
 #myButton {
   display: block;
   margin-top: 20px;
-  background-color: #4caf50;
+  background-color: #000000;
   color: #fff;
   border: none;
   padding: 10px 15px;
-  border-radius: 3px;
+  border-radius: 35px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 #myButton:hover {
+  background-color: #45a049;
+}
+
+#myButtonregister {
+  margin-top: 20px;
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 35px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#myButtonregister:hover {
   background-color: #45a049;
 }
 

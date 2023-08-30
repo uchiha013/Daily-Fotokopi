@@ -8,5 +8,7 @@ const services = require('../services/render')
 /* GET home page. */
 router.get('/',services.PesananRoutes);
 router.get('/api/pesanan',pesananController.index)
+router.get('/delete/:id',pesananController.destroy)
+router.get('/edit/:id',pesananController.update)
 
 module.exports = router;

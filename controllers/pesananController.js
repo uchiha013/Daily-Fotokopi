@@ -13,6 +13,7 @@ const auth = new google.auth.GoogleAuth({
     scopes: SCOPES,
 });
 
+
 const uploadFile = async (fileObject) => {
     const bufferStream = new stream.PassThrough();
     bufferStream.end(fileObject.buffer);
@@ -29,24 +30,6 @@ const uploadFile = async (fileObject) => {
     });
     console.log(`Uploaded file ${data.name} ${data.id}`);
 };
-
-const uploadFileBuktiPembayaran = async (fileObject2) => {
-    const bufferStream = new stream.PassThrough();
-    bufferStream.end(fileObject2.buffer);
-    const { data } = await google.drive({ version: "v3", auth }).files.create({
-        media: {
-            mimeType: fileObject2.mimeType,
-            body: bufferStream,
-        },
-        requestBody: {
-            name: fileObject2.originalname,
-            parents: ["1pxmbQmx-GS8gzfSE5oi4szKCe5R32SOW"],
-        },
-        fields: "id,name",
-    });
-    console.log(`Uploaded file ${data.name} ${data.id}`);
-};
-
 
 //Menampilkan List Pesanan
 const index = (req, res, next) => {
@@ -79,37 +62,38 @@ const show = (req, res, next) => {
 
 
 const store = async (req, res) =>{
-
+    
+    const { body, files, filesbuktipembayaran } = req;
     let pesanan = new Pesanan({
         namafotokopi: req.body.namafotokopi,
         namapemesan: req.body.namapemesan,
         layanan: req.body.layanan,
+        namafile:  files[0].originalname,
         noAntrian: req.body.noAntrian,
         status: req.body.status
     })
     try {
 
     console.log(req.body);
-    console.log(req.files);
+    // console.log(files.originalname);
     // console.log(req.body.files.name);
-    const { body, files, filesbuktipembayaran } = req;
+    pesanan.save()
+    .then(response => {   
+            // res.status(200).send("pesanan berhasil ditambahkan");
+            res.send({message:'pesanan berhasil silahkan untuk menunggu'});
+            console.log("the database pesanan it's work")
+    })
+    .catch(error =>{
+        console.log("the database pesanan it's work")
+        res.send({message:error});
+    })
 
     for (let f = 0; f < req.files.length; f += 1) {
         await uploadFile(files[f]);
         console.log("the file it's work")
     }
 
-    // uploadFileBuktiPembayaran(filesbuktipembayaran);
-    pesanan.save()
-    .then(response => {   
-            res.status(200).send("pesanan berhasil ditambahkan");
-            console.log("the database pesanan it's work")
-    })
-    .catch(error =>{
-        res.json({
-            message: error
-        })
-    })
+    // // uploadFileBuktiPembayaran(filesbuktipembayaran);
     } catch (f) {
         res.send(f.message);
         console.log(f)
@@ -117,47 +101,33 @@ const store = async (req, res) =>{
 }
 
 const update = (req, res, next) =>{
-    let orderId = req.body.OrderId
-
     let updateOrder = {
-        namapemesan: req.body.namapemesan,
-        namafotokopi: req.body.namafotokopi,
-        layanan: req.body.layanan,
-        jenisfile: req.body.jenisfile,
-        buktifotopembayaran: req.body.buktifotopembayaran,
-        noAntrian: req.body.noAntrian,
-        status: req.body.status
+        status: "Done"
     }
-    Pesanan.findByIdAndUpdate(orderId, {$set: updateOrder})
+    Pesanan.findByIdAndUpdate(req.params.id, {$set: updateOrder})
     .then(response => {
-        res.json({
-            massage: 'Pesanan updated Successfully'
-        })
+        res.redirect("/pesanan")
     })
     .catch(error =>{
         res.json({
-            message: 'An error occured!'
+            message: error
         })
     })
 }
 
 const destroy = (req, res, next) =>{
-    let orderId = req.body.OrderId
+    console.log(req.params.id)
 
-    Pesanan.findIdandRemove(orderId, {$set: updateOrder})
+    Pesanan.findByIdAndRemove(req.params.id)
     .then(response => {
-        res.json({
-            massage: 'Pesanan deleted Successfully'
-        })
+        res.redirect("/pesanan")  
     })
     .catch(error =>{
         res.json({
-            message: 'An error occured!'
+            message: error
         })
     })
 }
-
-
 
 
 module.exports ={
