@@ -4,7 +4,7 @@ const AuthController = require('../controllers/AuthController')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('register', { title: 'register' });
+  res.render('register', { message: '' });
 });
 
 
