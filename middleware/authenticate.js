@@ -19,7 +19,7 @@ const authenticate = (req, res, next) => {
         res.clearCookie('123456cat');
         res.clearCookie(process.env.ACCESS_TOKEN_SECRET);
         res.clearCookie(process.env.REFRESH_TOKEN_SECRET);
-        req.session.loggedin === false
+        req.session.loggedin = false;
         res.redirect('/')
         // res.json({
         //     message: 'Authentication failed'
